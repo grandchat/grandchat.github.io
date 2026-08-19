@@ -1,0 +1,794 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>privacy</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3bfd4e33-6517-80e4-bc62-ddae527d5a84" class="page sans"><header><h1 class="page-title" dir="auto">privacy</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><p id="3c0d4e33-6517-8043-9af6-fe8d5d2e978d" class="" dir="auto"><strong>Privacy Policy</strong></p><p id="3c0d4e33-6517-80d4-926e-c226aa7c0a90" class="" dir="auto">This privacy policy is applicable to the Tianshi app for mobile devices, together with any related services operated by Qiang Wenchao (collectively, the &quot;Application&quot;). Qiang Wenchao is hereinafter referred to as the &quot;Service Provider&quot;.</p><p id="3c0d4e33-6517-80b1-93c3-d9e326ea2a32" class="" dir="auto"><strong>Data Controller Information</strong></p><p id="3c0d4e33-6517-808c-bf20-f09cc72a579c" class="" dir="auto">Qiang Wenchao acts as the Data Controller responsible for the processing of your personal data.</p><ul id="3c0d4e33-6517-80c2-81e1-f1b68ecca86f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Name: Qiang Wenchao</li></ul><ul id="3c0d4e33-6517-805c-a5e5-f001123979bb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Address: south chang&#x27;an road,Xi&#x27;an,710021,China</li></ul><ul id="3c0d4e33-6517-80d1-b59f-db24cfa94050" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Email: support@galaxyreverie.com</li></ul><p id="3c0d4e33-6517-80a0-9b08-cf520ea77497" class="" dir="auto">For data protection inquiries and to exercise your GDPR rights, please contact the Data Controller using the contact information above.</p><p id="3c0d4e33-6517-80b0-807b-e51fcce3d4a7" class="" dir="auto"><strong>What information does the Application obtain and how is it used?</strong></p><p id="3c0d4e33-6517-8032-886f-ee020d147e0f" class="" dir="auto">The Application and related services acquire the information you supply when you download, access, or register for the service. Registration with the Service Provider is not mandatory. However, you might not be able to use some of the features offered by the service unless you register.</p><p id="3c0d4e33-6517-80b1-883f-f1de1f0c4d92" class="" dir="auto">The Service Provider may also use the information you provide to send important information, required notices, and, where permitted by law, marketing communications.</p><p id="3c0d4e33-6517-8069-8aa0-dbcff7d19eaa" class="" dir="auto"><strong>Legal basis for processing your personal data</strong></p><p id="3c0d4e33-6517-80fe-be54-ec28e76960da" class="" dir="auto">Where the GDPR applies, the Service Provider relies on one or more lawful bases to process your personal data, including:</p><ul id="3c0d4e33-6517-80de-8cdc-f00d0ae9164b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Contract performance: processing necessary to provide the Application or fulfil a contract with you.</li></ul><ul id="3c0d4e33-6517-804a-a358-fc766c542a1d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Consent: where you have given explicit consent to processing, including for marketing, analytics, or optional features. You may withdraw consent at any time without affecting processing that occurred before withdrawal.</li></ul><ul id="3c0d4e33-6517-809a-abc9-c5fa175ce25d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Legitimate interests: where processing is necessary for the Service Provider&#x27;s specific legitimate interests, such as maintaining network and information security, preventing fraud and abuse, or improving the Application&#x27;s core functionality through analytics, provided those interests are not overridden by your data protection rights or fundamental freedoms.</li></ul><ul id="3c0d4e33-6517-8065-b55f-ffc92472d866" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Legal obligation: to comply with laws or government requests.</li></ul><p id="3c0d4e33-6517-804e-8934-cd7f0c283f07" class="" dir="auto"><strong>Cookies and similar technologies</strong></p><p id="3c0d4e33-6517-8062-9427-fd28e7d8fd04" class="" dir="auto">The Application or its third-party SDKs may use cookies, SDKs, pixels, and similar technologies to support functionality, analytics, and service delivery. Where required by law, the Service Provider will obtain your consent before using non-essential tracking technologies.</p><p id="3c0d4e33-6517-80f4-9ce9-e923fbf960ee" class="" dir="auto"><strong>Automated decision-making and profiling</strong></p><p id="3c0d4e33-6517-80a3-a8e3-e9ef87f16f99" class="" dir="auto">If the Application uses automated decision-making, including profiling, that produces legal effects concerning you or similarly significantly affects you, you have the right to request human review, express your point of view, and contest the decision. Information about the logic involved and the likely consequences of that processing will be provided where required by law.</p><p id="3c0d4e33-6517-80a9-8e1b-ef8b19bda6b4" class="" dir="auto"><strong>What information does the Application collect automatically?</strong></p><p id="3c0d4e33-6517-8025-ad3e-fc4863137cb1" class="" dir="auto">In addition, the Application may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile device&#x27;s unique device ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browsers you use, and information about the way you use the Application.</p><p id="3c0d4e33-6517-80ab-8ac4-fe0a68f3edc0" class="" dir="auto"><strong>Does the Application collect precise real time location information of the device?</strong></p><p id="3c0d4e33-6517-8044-b9f5-e1370624b3d2" class="" dir="auto">This Application collects your device&#x27;s location to provide the following functions:</p><ul id="3c0d4e33-6517-805b-8a37-fb98dd0cdca1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Geolocation Services: The Service Provider utilizes location data to provide features such as personalized content, relevant recommendations, and location-based services.</li></ul><ul id="3c0d4e33-6517-8067-a198-cd42126cec4e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Analytics and Improvements: Aggregated and anonymized location data helps the Service Provider to analyze user behavior, identify trends, and improve the overall performance and functionality of the Application.</li></ul><ul id="3c0d4e33-6517-8094-be01-f4ef99e83564" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Third-Party Services: Periodically, the Service Provider may transmit anonymized location data to external services. These services assist them in enhancing the Application and optimizing their offerings.</li></ul><p id="3c0d4e33-6517-808a-8319-ee12684130b0" class="" dir="auto"><strong>Does the Application use Artificial Intelligence (AI) technologies?</strong></p><p id="3c0d4e33-6517-8085-ad20-d8494d9d0e19" class="" dir="auto">The Application does not use Artificial Intelligence (AI) technologies to process your data or provide features.</p><p id="3c0d4e33-6517-80e9-b09c-ed19a80451e5" class="" dir="auto"><strong>Do third parties see and/or have access to information obtained by the Application?</strong></p><p id="3c0d4e33-6517-80f0-983c-eb9f68302158" class="" dir="auto">Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.</p><p id="3c0d4e33-6517-80f1-a3cd-d5cbdac0678b" class="" dir="auto"><strong>International Data Transfers</strong></p><p id="3c0d4e33-6517-80af-9df1-d92b4f670b33" class="" dir="auto">The Service Provider or its third-party service providers may transfer personal data outside the European Economic Area (EEA). Where such transfers occur, the Service Provider will use an appropriate transfer mechanism required by GDPR Chapter V.</p><ul id="3c0d4e33-6517-8004-a462-c8649b1d35ba" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Adequacy decisions by the European Commission</li></ul><ul id="3c0d4e33-6517-807c-a0d8-c18090bfb0c6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Standard Contractual Clauses (SCCs) approved by the European Commission</li></ul><ul id="3c0d4e33-6517-8018-a41f-cc938293b174" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Other safeguards or derogations recognized under GDPR Chapter V, including consent where legally permitted</li></ul><p id="3c0d4e33-6517-80d3-b327-c89474f37dc4" class="" dir="auto">Countries outside the EEA may not provide the same level of data protection as the EEA. Where required by law, the Service Provider will apply appropriate safeguards and obtain any consent required for the transfer.</p><p id="3c0d4e33-6517-8062-87c1-c5a64029999e" class="" dir="auto">Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:</p><ul id="3c0d4e33-6517-8089-91a6-f1cbca8fe15e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><a href="https://firebase.google.com/support/privacy">Google Analytics for Firebase</a></li></ul><ul id="3c0d4e33-6517-8023-9ba6-c59fa8b84652" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><a href="https://firebase.google.com/support/privacy/">Firebase Crashlytics</a></li></ul><p id="3c0d4e33-6517-8003-9f88-de66c0c27c15" class="" dir="auto">The Service Provider may disclose User Provided and Automatically Collected Information:</p><ul id="3c0d4e33-6517-80d9-82fc-f657b88b44fb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">as required by law, such as to comply with a subpoena, or similar legal process;</li></ul><ul id="3c0d4e33-6517-802c-be63-cf00679ddac2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;</li></ul><ul id="3c0d4e33-6517-806b-a401-e796961ae73f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">with their trusted services providers who work on their behalf, do not have an independent use of the information the Service Provider discloses to them, and have agreed to adhere to the rules set forth in this privacy statement.</li></ul><p id="3c0d4e33-6517-8035-8d4e-cdba49bbc04a" class="" dir="auto">Where the GDPR applies, the Service Provider enters into Data Processing Agreements (DPAs) with third-party service providers that process personal data on its behalf, as required by Article 28 of the GDPR. These DPAs impose the same data protection obligations on those service providers as described in this Privacy Policy.</p><p id="3c0d4e33-6517-8051-842a-dfa80dff73b1" class="" dir="auto"><strong>What are my opt-out rights?</strong></p><p id="3c0d4e33-6517-8042-beec-d2e581450eec" class="" dir="auto">You can stop further collection of information from your mobile device by uninstalling the Application. Uninstalling will stop the Application from collecting data from your device, but it does not automatically delete information that has already been transmitted to the Service Provider or to third parties.</p><p id="3c0d4e33-6517-80a3-9fff-c1c58254082e" class="" dir="auto">To request deletion of your personal data, withdraw consent, or exercise any of your rights, contact the Service Provider at support@galaxyreverie.com.</p><p id="3c0d4e33-6517-80c6-a6f1-ef1efa17e1fd" class="" dir="auto"><strong>What is the data retention policy and how can you manage your information?</strong></p><p id="3c0d4e33-6517-8093-900b-ed7b3ee43991" class="" dir="auto">The Service Provider retains personal data based on its necessity for the stated purposes:</p><ul id="3c0d4e33-6517-8031-88f5-e2a34c1d9462" class="bulleted-list" dir="auto"><li style="list-style-type:disc">User Provided Data: Retained for the duration of your use of the Application plus 12 months thereafter, unless longer retention is required by law</li></ul><ul id="3c0d4e33-6517-800c-91d0-dc6ad4e1a642" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Automatically Collected Data: Retained for up to 24 months from collection, unless longer retention is required for legal compliance or security purposes</li></ul><ul id="3c0d4e33-6517-8098-8741-e196d06bd95e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Aggregated and Anonymized Data: Retained indefinitely as it no longer identifies you</li></ul><ul id="3c0d4e33-6517-8041-b3a7-da8b4eab7a7a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Data required for legal compliance: Retained as long as required by applicable law</li></ul><p id="3c0d4e33-6517-803d-8704-f924f712af4d" class="" dir="auto">You have the right to request deletion of your personal data at any time, except where retention is required by law. If you&#x27;d like the Service Provider to delete User Provided Data that you have provided via the Application, please contact them at support@galaxyreverie.com and they will respond within the time required by applicable law. Please note that some User Provided Data may be required in order for the Application to function properly.</p><p id="3c0d4e33-6517-80f7-ae23-d32dc634cdcf" class="" dir="auto"><strong>Data Deletion</strong></p><p id="3c0d4e33-6517-802b-94c0-efbf1a9338c0" class="" dir="auto">You can request deletion of your personal data or account by contacting the Service Provider at support@galaxyreverie.com. The Service Provider will process your request within the timeframes required by applicable law.</p><p id="3c0d4e33-6517-80ce-a895-d5fab838b8cf" class="" dir="auto">Upon verification of your identity, the Service Provider will delete your personal data from its systems, except where retention is required for legal compliance or legitimate business purposes.</p><p id="3c0d4e33-6517-8001-ae6d-c838c716e39e" class="" dir="auto"><strong>How does the Application address children&#x27;s privacy?</strong></p><p id="3c0d4e33-6517-8033-a448-f2c9549bfc66" class="" dir="auto">The Application is not intended for children under 16 years of age, or where a higher age of digital consent is established under applicable law. The Service Provider does not knowingly solicit data from children or market the Application to them.</p><p id="3c0d4e33-6517-804c-b74d-d5079215c65f" class="" dir="auto">Where parental or guardian consent is required under applicable law, the Application is not intended for use without that consent. The Service Provider does not knowingly collect personally identifiable information from children under 16 years of age, or where a higher age of digital consent is established by applicable law, in violation of applicable law. In the event the Service Provider discovers that a child has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided the Service Provider with personal information, please contact the Service Provider (support@galaxyreverie.com) so that they will be able to take the necessary actions.</p><p id="3c0d4e33-6517-80d9-9a31-d9f5c934ceac" class="" dir="auto"><strong>How is your information kept secure?</strong></p><p id="3c0d4e33-6517-8061-b165-e5829d6a81d5" class="" dir="auto">The Service Provider is committed to safeguarding the confidentiality of your information. The Service Provider implements physical, electronic, and procedural safeguards to protect information it processes and maintains. For example, access is limited to authorized employees and contractors who need to know that information to operate, develop, or improve the Application. However, no security system can prevent all potential security breaches.</p><p id="3c0d4e33-6517-8091-b013-f56c57000a82" class="" dir="auto"><strong>Data Breach Notification</strong></p><p id="3c0d4e33-6517-8093-863f-ebaf95d85c52" class="" dir="auto">In the event of a personal data breach that poses a risk to your rights and freedoms, the Service Provider will notify the relevant supervisory authority within 72 hours of becoming aware of the breach, as required by applicable law. Where the breach is likely to result in a high risk to your rights and freedoms, the Service Provider will also notify you without undue delay, providing information about the nature of the breach, the categories of data affected, and the measures taken or proposed to address the breach.</p><p id="3c0d4e33-6517-80c3-8c93-f36ce2af1092" class="" dir="auto"><strong>How will you be informed of changes to this Privacy Policy?</strong></p><p id="3c0d4e33-6517-8036-b650-ff8f648709d7" class="" dir="auto">The Service Provider may update this Privacy Policy from time to time. The Service Provider will notify you of material changes by posting the updated Privacy Policy with an effective date. Where required by law, the Service Provider will seek your consent to material changes before they take effect.</p><p id="3c0d4e33-6517-80fd-8e9f-e316a08ecc53" class="" dir="auto">Previous versions of this Privacy Policy will be maintained and made available upon request by contacting the Service Provider at support@galaxyreverie.com.</p><p id="3c0d4e33-6517-80dc-8afd-c5abd6a295ad" class="" dir="auto">This privacy policy is effective as of 2026-08-18</p><p id="3c0d4e33-6517-8037-96dd-d2454d8ad0db" class="" dir="auto"><strong>What are your GDPR data protection rights?</strong></p><p id="3c0d4e33-6517-8096-896d-f742195e4388" class="" dir="auto">Under the GDPR, you have the following rights:</p><ul id="3c0d4e33-6517-8012-8fcf-e06ed4519393" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right of Access: You can request access to your personal data.</li></ul><ul id="3c0d4e33-6517-80a8-8986-e0c8a2eb1909" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Rectification: You can request correction of inaccurate data.</li></ul><ul id="3c0d4e33-6517-8048-8bf1-d0b7faa404bb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Erasure: You can request deletion of your personal data (the &quot;right to be forgotten&quot;).</li></ul><ul id="3c0d4e33-6517-80b5-8df5-c744dd586475" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Restrict Processing: You can request that the Data Controller limits how they use your data.</li></ul><ul id="3c0d4e33-6517-8085-8aa6-c97b3d1f64de" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Data Portability: You can request a copy of your data in a structured, commonly used, machine-readable format.</li></ul><ul id="3c0d4e33-6517-807e-8e27-c67236b0c408" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Object: You can object to processing based on legitimate interests. You have an absolute right to object to processing for direct marketing purposes at any time.</li></ul><ul id="3c0d4e33-6517-8009-95d2-e46f8b94f53f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Withdraw Consent: Where processing is based on your consent, you can withdraw it at any time. Withdrawal is as simple as toggling preferences in the Application&#x27;s settings or contacting the Data Controller.</li></ul><ul id="3c0d4e33-6517-802b-9dd5-e7b42a0be9c9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Rights Regarding Automated Decision-Making: You have rights related to automated decisions that affect you.</li></ul><p id="3c0d4e33-6517-80ee-acec-e4e9b5a6f564" class="" dir="auto">If you believe your data protection rights have been violated, you have the right to lodge a complaint with your local Data Protection Authority. Contact details for each country&#x27;s Data Protection Authority can be found at:<a href="https://edpb.ec.europa.eu/about-edpb/members_en">https://edpb.ec.europa.eu/about-edpb/members_en</a></p><p id="3c0d4e33-6517-8081-ba76-c60301c09755" class="" dir="auto">If you are located in the United Kingdom, you may contact the Information Commissioner&#x27;s Office at<a href="https://ico.org.uk/">https://ico.org.uk</a></p><p id="3c0d4e33-6517-80ce-bdd0-ecc09f6387e3" class="" dir="auto"><strong>What are your California privacy rights (CCPA/CPRA)?</strong></p><p id="3c0d4e33-6517-80fa-b337-c2cc94f43e2e" class="" dir="auto">If you are a resident of California, the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA) provide you with additional rights regarding your personal information:</p><ul id="3c0d4e33-6517-8084-aefe-f24ac024ef69" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Know: You can request disclosure of the categories and specific pieces of personal information the Service Provider has collected about you.</li></ul><ul id="3c0d4e33-6517-8097-a000-dbbf677bf6ac" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Delete: You can request deletion of personal information the Service Provider has collected from you, subject to certain exceptions.</li></ul><ul id="3c0d4e33-6517-808d-a156-cc6d513c9ca4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Correct: You can request correction of inaccurate personal information.</li></ul><ul id="3c0d4e33-6517-80fa-aa49-c2d1e3363ea7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Opt-Out: You can opt out of the sale or sharing of your personal information for cross-context behavioral advertising.</li></ul><ul id="3c0d4e33-6517-803d-bb9e-fe1488a2a6ee" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Limit Use of Sensitive Personal Information: You can limit the use of your sensitive personal information to essential purposes.</li></ul><ul id="3c0d4e33-6517-8055-a175-c6d986437592" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Right to Non-Discrimination: The Service Provider will not discriminate against you for exercising any of your CCPA/CPRA rights.</li></ul><p id="3c0d4e33-6517-800f-9876-ce2e4323351c" class="" dir="auto">To exercise any of these rights, please contact the Service Provider at support@galaxyreverie.com. The Service Provider will verify your request using the information you provide and respond within the timeframes required by law. You may designate an authorized agent to make a request on your behalf.</p><p id="3c0d4e33-6517-80d1-91fc-c66ce857ff9a" class="" dir="auto"><strong>How do you give your consent?</strong></p><p id="3c0d4e33-6517-80d5-baa1-d891d3baba6e" class="" dir="auto">Where processing is based on consent, you provide that consent by affirmatively opting in to the relevant feature or action. You may withdraw consent at any time without affecting processing carried out before withdrawal. Processing based on other lawful bases, including contract performance, legitimate interests, or legal obligations, is carried out as described above.</p><p id="3c0d4e33-6517-8011-b64c-d0dad7b455c3" class="" dir="auto"><strong>How can you contact the Data Controller?</strong></p><p id="3c0d4e33-6517-80dd-a1f5-e9336e5bc7c4" class="" dir="auto">If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at support@galaxyreverie.com.</p><p id="3c0d4e33-6517-8056-833d-e07767f56844" class="" dir="auto">To request deletion of your personal data or to exercise any of your rights, contact the Service Provider using the details provided above. The Service Provider will respond within one month of receiving your request, extendable by up to two months where necessary due to the complexity or volume of requests, as permitted by applicable law.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天时 - App Support</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-align: center; padding: 50px 20px; color: #333; background-color: #f9f9f9; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h1 { color: #8c6239; margin-bottom: 20px; }
+        p { font-size: 16px; line-height: 1.8; color: #555; text-align: left; }
+        .center { text-align: center; }
+        .btn { display: inline-block; background-color: #8c6239; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+        .footer { margin-top: 50px; font-size: 14px; }
+        .footer a { color: #999; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>天时 (Galaxy Reverie)</h1>
+        <p><strong>功能简介：</strong>展示所选定地点的真太阳时与标准时间对比，以及基于真太阳时的养生生活方式建议。</p>
+        <p>如果您在使用过程中遇到任何问题，或有任何功能建议，欢迎随时联系我们的支持团队。我们通常会在 24 小时内回复您。</p>
+        
+        <div class="center">
+            <a href="mailto:support@galaxyreverie.com" class="btn">联系支持 (Contact Support)</a>
+        </div>
+
+        <!-- 关键：把隐私政策链接放在网页底部 -->
+        <div class="footer">
+            <a href="privacy policy.html" target="_blank">Privacy Policy (隐私政策)</a>
+        </div>
+        
+        <div class="footer">
+            <a href="terms and conditions.html" target="_blank">Terms & Conditions (合约条款)</a>
+        </div>
+    </div>
+</body>
+</html>
